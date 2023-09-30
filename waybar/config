@@ -1,0 +1,99 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-center": ["clock","custom/power"],
+    "modules-right": ["custom/pacman","backlight","pulseaudio","upower","tray"],
+    "width": 1355,
+    "margin-left": 5,
+    "margin-right": 5,
+    "margin-top": 5,
+    "margin-bottom": 0,
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "focused": "",
+            "default": "",
+          },
+         //  "persistent_workspaces": {
+         //        "*": 5,
+         //  }
+    },
+    
+    "hyprland/window": {
+        "format": "{class}",
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "🌎 $1",
+            "(.*) - fish": "> [$1]"
+        },
+        "separate-outputs": true
+    },
+    
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "<span color=\"#f9e2af\">{icon}</span> {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "tooltip": false,
+    },
+
+    "upower": {
+        "format": "<span color=\"#cdd6f4\">{percentage}</span>",
+        "icon-size": 13,
+        "hide-if-empty": true,
+        "tooltip": true,
+        "tooltip-spacing": 20
+    },
+    
+    "pulseaudio": {
+        "format": "<span color=\"#89b4fa\">{icon}</span> {volume}%",
+        "format-bluetooth": "<span color=\"#89b4fa\">{icon}</span> {volume}%",
+        "format-muted": "Muted",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol",
+        "ignored-sinks": ["Easy Effects Sink"]
+    },
+    
+    "tray": {
+    "icon-size": 14,
+    "spacing": 7
+    },
+    
+    "custom/pacman": {
+        "format": "<span color=\"#94e2d5\">󰜸</span> {}",
+        "interval": 3600,                     // every hour
+        "exec": "checkupdates | wc -l",       // # of updates
+        "exec-if": "exit 0",                  // always run; consider advanced run conditions
+        "signal": 8,
+        "on-click": "pkill -SIGRTMIN+8 waybar",
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": " ⏻  ",
+        "on-click": "nwg-bar",
+        "tooltip": false,
+    },
+
+    "clock": {
+        "format": "{:<span color=\"#a6e3a1\">󰃭</span> %a, %d-%b-%y  <span color=\"#89b4fa\"></span> %I:%M %p}"
+    }
+}
